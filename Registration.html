@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            width: 335px;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .input-container {
+            margin: 5px 0;
+        }
+
+        .input-container input {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #00346c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .space {
+            height: 10px; /* Adjust the height for spacing */
+        }
+
+        .show-password-btn {
+            background-color: #eee;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>
+          UArizona scolorship Aplication
+        </h2>
+        
+        <div class="input-container">
+            <input type="text" placeholder="Email">
+        </div>
+        
+        <div class="input-container">
+            <input type="password" placeholder="Password" id="password-input">
+        </div>
+
+        <button class="show-password-btn" id="show-password">
+          Show Password
+        </button>
+        <div class="space"></div>
+        
+        <button class="btn" onclick="location.href='#'">
+          Login
+        </button>
+        
+        <div class="space">
+
+        </div>
+        
+        <button class="btn" onclick="location.href='#'">
+          Sign Up
+        </button>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password-input');
+        const showPasswordButton = document.getElementById('show-password');
+
+        showPasswordButton.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+            } else {
+                passwordInput.type = 'password';
+            }
+        });
+    </script>
+</body>
+</html>
+
