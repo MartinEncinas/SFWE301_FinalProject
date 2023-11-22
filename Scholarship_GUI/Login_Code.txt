@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.*;
+/*
+Code for loging into specific GUI
+To be tested and updated
+*/
+public class ProjectBackEnd 
+{
+    public static void main(String[] args) 
+    {
+        String[][] accounts = new String[100][5];
+        accounts[0][0] = "John12@gmail.com";
+        accounts[0][1] = "P@ssword";
+        accounts[0][2] = "1"; // 1 being applicant 2 is IT
+        accounts[0][3] = "John Martin";
+        accounts[0][4] = "Software Engineering";
+        String username, pass;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter Username: ");
+        username = scan.nextLine();
+        System.out.println("Enter Password: ");
+        pass = scan.nextLine();
+        boolean login = false;
+        for(int i = 0; i < accounts.length; i++)
+        {
+            if(username.equals(accounts[i][0]))
+            {
+                if(pass.equals(accounts[i][1]))
+                {
+                    login = true;
+                    switch(accounts[i][2]) {
+                        case "1":
+                            System.out.println("Applicant login success");
+                            break;
+                        case "2":
+                            System.out.println("IT login success");
+                            break;
+                        case "3":
+                            System.out.println("Admin login success");
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("User DNE");
+                break;
+            }
+        }
+    }
+}
