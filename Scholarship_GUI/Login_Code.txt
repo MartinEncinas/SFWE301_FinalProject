@@ -3,6 +3,7 @@ import java.util.*;
 /*
 Code for loging into specific GUI
 To be tested and updated
+ONLY A SAMPLE
 */
 public class ProjectBackEnd 
 {
