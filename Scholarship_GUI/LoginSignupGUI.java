@@ -6,6 +6,14 @@ import java.awt.event.ActionListener;
 public class LoginSignupGUI {
     
     public static void main(String[] args) {
+        String[][] accounts = new String[100][5];
+        accounts[0][0] = "John12@gmail.com";
+        accounts[0][1] = "P@ssword";
+        accounts[0][2] = "1"; // 1 being applicant 2 is IT
+        accounts[0][3] = "John Martin";
+        accounts[0][4] = "Software Engineering";
+        
+        
         JFrame frame = new JFrame("Login / Signup");
         frame.setSize(500, 350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,6 +95,40 @@ public class LoginSignupGUI {
 
                 frame.dispose(); // this command/method close the login/signup GUI before openeing Registration GUI but, 
                                  // we need to make sure to adjust the variable names and methods based on your actual code structure.
+            }
+        });
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = emailField.getText();
+                String pass = passwordField.getText();
+                boolean login = false;
+                for(int i = 0; i < accounts.length; i++)
+                {
+                    if(username.equals(accounts[i][0]))
+                    {
+                        if(pass.equals(accounts[i][1]))
+                        {
+                            login = true;
+                            switch(accounts[i][2]) {
+                                case "1":
+                                    frame.dispose();
+                                    break;
+                                case "2":
+                                    
+                                    break;
+                                case "3":
+                                    
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        
+                        break;
+                    }
+                }                
             }
         });
 
