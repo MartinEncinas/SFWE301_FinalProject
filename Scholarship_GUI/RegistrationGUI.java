@@ -36,9 +36,9 @@ public class RegistrationGUI {
         gbc.gridy = 2;
         registrationPanel.add(new JTextField(20), gbc);
 
-        gbc.gridx = 0;
+       gbc.gridx = 0;
         gbc.gridy = 3;
-        registrationPanel.add(new JLabel("Contact Information:"), gbc);
+        registrationPanel.add(new JLabel("Password:"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -46,23 +46,23 @@ public class RegistrationGUI {
 
         gbc.gridx = 0;
         gbc.gridy = 4;
+        registrationPanel.add(new JLabel("Contact Information(phone):"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        registrationPanel.add(new JTextField(20), gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
         registrationPanel.add(new JLabel("Are you an applicant?"), gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         registrationPanel.add(new JCheckBox("Yes"), gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
-        registrationPanel.add(new JLabel("School Name (if applicant):"), gbc);
-
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        registrationPanel.add(new JTextField(20), gbc);
-
-        gbc.gridx = 0;
         gbc.gridy = 6;
-        registrationPanel.add(new JLabel("Organization Name (if donor):"), gbc);
+        registrationPanel.add(new JLabel("School Name (if applicant):"), gbc);
 
         gbc.gridx = 1;
         gbc.gridy = 6;
@@ -70,6 +70,14 @@ public class RegistrationGUI {
 
         gbc.gridx = 0;
         gbc.gridy = 7;
+        registrationPanel.add(new JLabel("Organization Name (if donor):"), gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        registrationPanel.add(new JTextField(20), gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         registrationPanel.add(new JButton("Register"), gbc);
 
