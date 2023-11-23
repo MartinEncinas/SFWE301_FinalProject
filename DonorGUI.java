@@ -39,7 +39,7 @@ public class DonorGUI extends JFrame {
         navBar.add(namePanel, BorderLayout.CENTER);
 
         // label on the left side of the hamburger button
-        JLabel nameLabel = new JLabel("Applicant Name");
+        JLabel nameLabel = new JLabel("Donor Name");
         nameLabel.setForeground(Color.WHITE); // Optional: Set the text color
         navBar.add(nameLabel, BorderLayout.CENTER);
 
@@ -110,9 +110,9 @@ public class DonorGUI extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);  // Padding
 
         // Set preferred size for the buttons to make them bigger
-         scholarshipCreateButton.setPreferredSize(new Dimension(200, 50));
-        ModifyButton.setPreferredSize(new Dimension(200, 50));
-        DeleteScholarshipsButton.setPreferredSize(new Dimension(200, 50));
+        scholarshipCreateButton.setPreferredSize(new Dimension(800, 600));
+        ModifyButton.setPreferredSize(new Dimension(800, 600));
+        DeleteScholarshipsButton.setPreferredSize(new Dimension(800, 600));
        
         scholarshipPanel.add(scholarshipCreateButton, gbc);
         gbc.gridy++;
@@ -124,67 +124,167 @@ public class DonorGUI extends JFrame {
     }
 
     private void showScholarshipCreate() {
-        // Custom dialog for creating a scholarship
-    JTextField titleField = new JTextField();
-    JTextArea eligibilityArea = new JTextArea();
-    JTextArea applicationRequirementsArea = new JTextArea();
-   
-    JPanel panel = new JPanel(new GridLayout(0, 1));
-    panel.add(new JLabel("Title:"));
-    panel.add(titleField);
-    panel.add(new JLabel("Eligibility Requirements:"));
-    panel.add(eligibilityArea);
-    panel.add(new JLabel("Application Requirements:"));
-    panel.add(applicationRequirementsArea);
-
-    int result = JOptionPane.showConfirmDialog(null, panel, "Create Scholarship",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-    if (result == JOptionPane.OK_OPTION) {
-        // Process the entered data, e.g., store it or perform further actions
-        String title = titleField.getText();
-        String eligibility = eligibilityArea.getText();
-        String applicationRequirements = applicationRequirementsArea.getText();
+        JTextField nameField = new JTextField();
+        JTextArea descriptionArea = new JTextArea();
+        JTextArea eligibilityArea = new JTextArea();
+        JTextArea applicationRequirementsArea = new JTextArea();
+        JTextField awardAmountField = new JTextField();
+        JTextField deadlinesField = new JTextField();
     
-
-        // Perform actions with the entered data as needed
-        // You may want to store this information or perform other operations
-        System.out.println("Title: " + title);
-        System.out.println("Eligibility: " + eligibility);
-        System.out.println("Application Requirements: " + applicationRequirements);
-       
+        descriptionArea.setLineWrap(true);
+        descriptionArea.setRows(5); // Set the initial number of rows
+    
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setPreferredSize(new Dimension(800, 600));  // Set preferred size
+    
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+    
+        panel.add(new JLabel("Scholarship name:"), gbc);
+        gbc.gridy++;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(nameField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Description:"), gbc);
+        gbc.gridy++;
+        gbc.gridwidth = 2;  // Make the descriptionArea span 2 columns
+        gbc.weightx = 1.0;  // Allow descriptionArea to expand horizontally
+        gbc.fill = GridBagConstraints.BOTH;
+        
+        // Set a fixed size for the JScrollPane containing the descriptionArea
+        JScrollPane descriptionScrollPane = new JScrollPane(descriptionArea);
+        descriptionScrollPane.setPreferredSize(new Dimension(400, 100));
+        
+        panel.add(descriptionScrollPane, gbc);
+        gbc.gridy++;
+        gbc.gridwidth = 1;  // Reset gridwidth
+        gbc.weightx = 0.0;  // Reset weight
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(new JLabel("Eligibility Requirements:"), gbc);
+        gbc.gridy++;
+        panel.add(new JScrollPane(eligibilityArea), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Application Requirements:"), gbc);
+        gbc.gridy++;
+        panel.add(new JScrollPane(applicationRequirementsArea), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Award amount:"), gbc);
+        gbc.gridy++;
+        panel.add(awardAmountField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Application deadlines:"), gbc);
+        gbc.gridy++;
+        panel.add(deadlinesField, gbc);
+    
+        int result = JOptionPane.showConfirmDialog(null, panel, "Create Scholarship",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    
+        if (result == JOptionPane.OK_OPTION) {
+            // Process the entered data as before
+            String name = nameField.getText();
+            String description = descriptionArea.getText();
+            String eligibility = eligibilityArea.getText();
+            String applicationRequirements = applicationRequirementsArea.getText();
+            String awardAmount = awardAmountField.getText();
+            String deadlines = deadlinesField.getText();
+    
+            // Perform actions with the entered data as needed
+            System.out.println("Title: " + name);
+            System.out.println("Description: " + description);
+            System.out.println("Eligibility: " + eligibility);
+            System.out.println("Application Requirements: " + applicationRequirements);
+            System.out.println("Award amount: " + awardAmount);
+            System.out.println("Application deadlines: " + deadlines);
+        }
     }
-    }
-
+    
     private void showModify() {
-        // Custom dialog for modifying a scholarship
-    JTextField titleField = new JTextField();
-    JTextArea eligibilityArea = new JTextArea();
-    JTextArea applicationRequirementsArea = new JTextArea();
-
-    JPanel panel = new JPanel(new GridLayout(0, 1));
-    panel.add(new JLabel("Title:"));
-    panel.add(titleField);
-    panel.add(new JLabel("Eligibility Requirements:"));
-    panel.add(eligibilityArea);
-    panel.add(new JLabel("Application Requirements:"));
-    panel.add(applicationRequirementsArea);
-   
-    int result = JOptionPane.showConfirmDialog(null, panel, "Modify Scholarship",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-
-    if (result == JOptionPane.OK_OPTION) {
-        // Process the entered data, e.g., update the scholarship with new information
-        String title = titleField.getText();
-        String eligibility = eligibilityArea.getText();
-        String applicationRequirements = applicationRequirementsArea.getText();
-
-        // Perform actions with the entered data as needed
-        // You may want to update the scholarship data or perform other operations
-        System.out.println("Modified Title: " + title);
-        System.out.println("Modified Eligibility: " + eligibility);
-        System.out.println("Modified Application Requirements: " + applicationRequirements);
-    }
+        JTextField nameField = new JTextField();
+        JTextArea descriptionArea = new JTextArea();
+        JTextArea eligibilityArea = new JTextArea();
+        JTextArea applicationRequirementsArea = new JTextArea();
+        JTextField awardAmountField = new JTextField();
+        JTextField deadlinesField = new JTextField();
+    
+        // Set default values for modification (replace with actual values)
+        nameField.setText("Existing Name");
+        descriptionArea.setText("Existing Description");
+        eligibilityArea.setText("Existing Eligibility");
+        applicationRequirementsArea.setText("Existing Application Requirements");
+        awardAmountField.setText("Existing Award Amount");
+        deadlinesField.setText("Existing Deadlines");
+    
+        descriptionArea.setLineWrap(true);
+        descriptionArea.setRows(5); // Set the initial number of rows
+    
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setPreferredSize(new Dimension(800, 600));  // Set preferred size
+    
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 5, 5, 5);
+    
+        panel.add(new JLabel("Scholarship name:"), gbc);
+        gbc.gridy++;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(nameField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Description:"), gbc);
+        gbc.gridy++;
+        gbc.gridwidth = 2;  // Make the descriptionArea span 2 columns
+        gbc.weightx = 1.0;  // Allow descriptionArea to expand horizontally
+        gbc.fill = GridBagConstraints.BOTH;
+    
+        // Set a fixed size for the JScrollPane containing the descriptionArea
+        JScrollPane descriptionScrollPane = new JScrollPane(descriptionArea);
+        descriptionScrollPane.setPreferredSize(new Dimension(400, 100));
+    
+        panel.add(descriptionScrollPane, gbc);
+        gbc.gridy++;
+        gbc.gridwidth = 1;  // Reset gridwidth
+        gbc.weightx = 0.0;  // Reset weight
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel.add(new JLabel("Eligibility Requirements:"), gbc);
+        gbc.gridy++;
+        panel.add(new JScrollPane(eligibilityArea), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Application Requirements:"), gbc);
+        gbc.gridy++;
+        panel.add(new JScrollPane(applicationRequirementsArea), gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Award amount:"), gbc);
+        gbc.gridy++;
+        panel.add(awardAmountField, gbc);
+        gbc.gridy++;
+        panel.add(new JLabel("Application deadlines:"), gbc);
+        gbc.gridy++;
+        panel.add(deadlinesField, gbc);
+    
+        int result = JOptionPane.showConfirmDialog(null, panel, "Modify Scholarship",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    
+        if (result == JOptionPane.OK_OPTION) {
+            // Process the entered data as before
+            String name = nameField.getText();
+            String description = descriptionArea.getText();
+            String eligibility = eligibilityArea.getText();
+            String applicationRequirements = applicationRequirementsArea.getText();
+            String awardAmount = awardAmountField.getText();
+            String deadlines = deadlinesField.getText();
+    
+            // Perform actions with the entered data as needed
+            System.out.println("Modified Title: " + name);
+            System.out.println("Modified Description: " + description);
+            System.out.println("Modified Eligibility: " + eligibility);
+            System.out.println("Modified Application Requirements: " + applicationRequirements);
+            System.out.println("Modified Award amount: " + awardAmount);
+            System.out.println("Modified Application deadlines: " + deadlines);
+        }
     }
 
     private void showDeleteScholarships() {
@@ -249,4 +349,3 @@ public class DonorGUI extends JFrame {
         });
     }
 }
-
