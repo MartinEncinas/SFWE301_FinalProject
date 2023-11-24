@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -62,11 +61,6 @@ public class StewardsGUI extends JFrame {
 
         mainContent.setLayout(new BoxLayout(mainContent, BoxLayout.Y_AXIS));
 
-        // Example: Adding JLabels to the main content panel
-        for (int i = 1; i <= 350; i++) {
-            JLabel label = new JLabel("Information " + i);
-            mainContent.add(label);
-        }
         // Wrap the main content panel in a JScrollPane
         scrollPane = new JScrollPane(mainContent);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -75,7 +69,37 @@ public class StewardsGUI extends JFrame {
         add(navBar, BorderLayout.NORTH);
         // Add the scroll pane to the CENTER position
         add(scrollPane, BorderLayout.CENTER);
+        
+        addScholarshipStewardsPanel();
+    }
+
+    private void addScholarshipStewardsPanel() {
+        JButton ScholarshipReportButton = new JButton("Generate reports");
+
+        ScholarshipReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showScholarshipReport();
+            }
+         });
+          // Use GridBagLayout for centering
+        JPanel scholarshipPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10);  // Padding
+
+        // Set preferred size for the buttons to make them bigger
+        ScholarshipReportButton.setPreferredSize(new Dimension(200, 50));
+
+        scholarshipPanel.add(ScholarshipReportButton, gbc);
+       
+        add(scholarshipPanel, BorderLayout.CENTER);
     
+
+    }
+    private void showScholarshipReport() {
+
     }
         
     private void showPopupMenu(Component invoker) {
@@ -113,7 +137,7 @@ public class StewardsGUI extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ApplicantGUI().setVisible(true);
+                new StewardsGUI().setVisible(true);
             }
         });
     }
