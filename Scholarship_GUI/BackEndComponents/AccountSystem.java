@@ -39,7 +39,7 @@ public class AccountSystem {
         System.out.println("New account created successfully.");
     }
     
-    public void listQualifiedForScholarship(double requiredGPA) {
+    public void searchUserAlgorithm(double requiredGPA) {
         System.out.println("Users qualified for the scholarship:");
         for (int i = 0; i < accountCount; i++) {
             double gpa = Double.parseDouble(accounts[i][4]); // Assuming GPA is stored as a double in the 5th column
