@@ -4,16 +4,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginSignupGUI {
-    public static String[][] accounts = new String[100][5];
+    public static NewAccount[] accounts = new NewAccount[100];
     static LoginSignupGUI loginSignupGUI;
+    public static int counter = 1;
     JFrame frame = new JFrame("Login / Signup");
    // private JFrame frame; // Instance variable to store the JFrame
     public static void main(String[] args) {
-        accounts[0][0] = "John12@gmail.com";
-        accounts[0][1] = "P@ssword";
-        accounts[0][2] = "1"; // 1 being applicant 2 is IT 3 is Admin/Staff 4 is Steward 5 Donor
-        accounts[0][3] = "John Martin";
-        accounts[0][4] = "Software Engineering";
+        NewAccount acc1 = new NewAccount("John Martin", "Software Engineering", "999-999-9999", "John12@gmail.com", "P@ssword", "1");
+        accounts[0] = acc1;
+        NewAccount acc2 = new NewAccount();
+        for(int i = 1; i < 100; i++) {
+            accounts[i] = acc2;
+        }
+        /*
+        accounts[0].setContactEmails("John12@gmail.com");
+        accounts[0].setContactPassword("P@ssword");
+        accounts[0].setPermissions("3"); // 1 being applicant 2 is IT 3 is Admin/Staff 4 is Steward 5 Donor
+        accounts[0].setName("John Martin");
+        accounts[0].setAcademicHistory("Software Engineering");
+        accounts[0].setContactDetails("999-999-9999");
+        */
         // Create an instance of LoginSignupGUI
         loginSignupGUI = new LoginSignupGUI();
           
@@ -118,12 +128,12 @@ public class LoginSignupGUI {
                 
                 for(int i = 0; i < accounts.length; i++)
                 {
-                    if(username.equals(accounts[i][0]))
+                    if(username.equals(accounts[i].getContactEmails()))
                     {
-                        if(pass.equals(accounts[i][1]))
+                        if(pass.equals(accounts[i].getContactPassword()))
                         {
                             login = true;
-                            switch(accounts[i][2]) {
+                            switch(accounts[i].getPermissions()) {
                                 case "1":
                                     
                                     new ApplicantGUI().addScholarshipPanel();
@@ -131,10 +141,12 @@ public class LoginSignupGUI {
                                     frame.dispose();
                                     break;
                                 case "2":
-                                    
+                                    new ITGUI().addScholarshipITPanel();
+                                    frame.dispose();
                                     break;
                                 case "3":
-                                    
+                                    new AdminGUI().addScholarshipAdminPanel();
+                                    frame.dispose();
                                     break;
                                 case "4":
                                     
@@ -154,3 +166,4 @@ public class LoginSignupGUI {
         
     }
 }
+
