@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 public class AdminGUI extends JFrame {
     private JScrollPane scrollPane;
     private JPanel mainContent;
-
+    static JFrame adminFrame = new JFrame();
     public AdminGUI() {
         // frame properties
-        setTitle("UASAMS Dashboard");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        adminFrame.setTitle("UASAMS Dashboard");
+        adminFrame.setSize(800, 600);
+        adminFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        adminFrame.setLocationRelativeTo(null);
 
         // panel for the navigation bar
         JPanel navBar = new JPanel(new BorderLayout());
@@ -68,15 +68,15 @@ public class AdminGUI extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // Add the navigation bar to the NORTH position
-        add(navBar, BorderLayout.NORTH);
+        adminFrame.add(navBar, BorderLayout.NORTH);
         // Add the scroll pane to the CENTER position
-        add(scrollPane, BorderLayout.CENTER);
+        adminFrame.add(scrollPane, BorderLayout.CENTER);
 
         addScholarshipAdminPanel();
 
     }
 
-    private void addScholarshipAdminPanel() {
+    public void addScholarshipAdminPanel() {
         JButton scholarshipCreateButton = new JButton("Create Scholarship");
         JButton ModifyButton = new JButton("Modify Scholarship");
         JButton DeleteScholarshipsButton = new JButton("Deactivate scholarship");
@@ -120,7 +120,9 @@ public class AdminGUI extends JFrame {
         gbc.gridy++;
         scholarshipPanel.add(DeleteScholarshipsButton, gbc);
        
-        add(scholarshipPanel, BorderLayout.CENTER);
+        adminFrame.add(scholarshipPanel, BorderLayout.CENTER);
+        adminFrame.getContentPane().add(scholarshipPanel);
+        adminFrame.setVisible(true);
     }
 
     private void showScholarshipCreate() {
@@ -190,7 +192,7 @@ public class AdminGUI extends JFrame {
             String applicationRequirements = applicationRequirementsArea.getText();
             String awardAmount = awardAmountField.getText();
             String deadlines = deadlinesField.getText();
-    
+            
             // Perform actions with the entered data as needed
             System.out.println("Title: " + name);
             System.out.println("Description: " + description);
