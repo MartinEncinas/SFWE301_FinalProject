@@ -6,13 +6,13 @@ import java.awt.event.ActionListener;
 public class DonorGUI extends JFrame {
     private JScrollPane scrollPane;
     private JPanel mainContent;
-
+    static JFrame donorFrame = new JFrame();
     public DonorGUI() {
         // frame properties
-        setTitle("UASAMS Dashboard");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        donorFrame.setTitle("UASAMS Dashboard");
+        donorFrame.setSize(800, 600);
+        donorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        donorFrame.setLocationRelativeTo(null);
 
         // panel for the navigation bar
         JPanel navBar = new JPanel(new BorderLayout());
@@ -68,15 +68,15 @@ public class DonorGUI extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // Add the navigation bar to the NORTH position
-        add(navBar, BorderLayout.NORTH);
+        donorFrame.add(navBar, BorderLayout.NORTH);
         // Add the scroll pane to the CENTER position
-        add(scrollPane, BorderLayout.CENTER);
+        donorFrame.add(scrollPane, BorderLayout.CENTER);
 
         addScholarshipDonorPanel();
 
     }
 
-    private void addScholarshipDonorPanel() {
+    public void addScholarshipDonorPanel() {
         JButton scholarshipCreateButton = new JButton("Create Scholarship");
         JButton ModifyButton = new JButton("Modify Scholarship");
         JButton DeleteScholarshipsButton = new JButton("Delete Scholarchip");
@@ -120,7 +120,9 @@ public class DonorGUI extends JFrame {
         gbc.gridy++;
         scholarshipPanel.add(DeleteScholarshipsButton, gbc);
        
-        add(scholarshipPanel, BorderLayout.CENTER);
+        donorFrame.add(scholarshipPanel, BorderLayout.CENTER);
+        donorFrame.getContentPane().add(scholarshipPanel);
+        donorFrame.setVisible(true);
     }
 
     private void showScholarshipCreate() {
@@ -190,14 +192,21 @@ public class DonorGUI extends JFrame {
             String applicationRequirements = applicationRequirementsArea.getText();
             String awardAmount = awardAmountField.getText();
             String deadlines = deadlinesField.getText();
-    
+            
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setName(name);
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDescription(description);
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setEligibility(eligibility);
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setRequirements(applicationRequirements);
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setAmount(awardAmount);
+            LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDeadlines(deadlines);
+            LoginSignupGUI.scholcounter++;
             // Perform actions with the entered data as needed
-            System.out.println("Title: " + name);
-            System.out.println("Description: " + description);
-            System.out.println("Eligibility: " + eligibility);
-            System.out.println("Application Requirements: " + applicationRequirements);
-            System.out.println("Award amount: " + awardAmount);
-            System.out.println("Application deadlines: " + deadlines);
+            //System.out.println("Title: " + name);
+            //System.out.println("Description: " + description);
+            //System.out.println("Eligibility: " + eligibility);
+            //System.out.println("Application Requirements: " + applicationRequirements);
+            //System.out.println("Award amount: " + awardAmount);
+            //System.out.println("Application deadlines: " + deadlines);
         }
     }
     
@@ -276,14 +285,27 @@ public class DonorGUI extends JFrame {
             String applicationRequirements = applicationRequirementsArea.getText();
             String awardAmount = awardAmountField.getText();
             String deadlines = deadlinesField.getText();
-    
+            
+            for(int i = 0; i < 100; i++)
+            {
+                if(name.equals(LoginSignupGUI.scholarships[i].getName()))
+                {
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setName(name);
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDescription(description);
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setEligibility(eligibility);
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setRequirements(applicationRequirements);
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setAmount(awardAmount);
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDeadlines(deadlines);
+                   break;
+                }
+            }
             // Perform actions with the entered data as needed
-            System.out.println("Modified Title: " + name);
-            System.out.println("Modified Description: " + description);
-            System.out.println("Modified Eligibility: " + eligibility);
-            System.out.println("Modified Application Requirements: " + applicationRequirements);
-            System.out.println("Modified Award amount: " + awardAmount);
-            System.out.println("Modified Application deadlines: " + deadlines);
+            //System.out.println("Modified Title: " + name);
+            //System.out.println("Modified Description: " + description);
+            //System.out.println("Modified Eligibility: " + eligibility);
+            //System.out.println("Modified Application Requirements: " + applicationRequirements);
+            //System.out.println("Modified Award amount: " + awardAmount);
+            //System.out.println("Modified Application deadlines: " + deadlines);
         }
     }
 
@@ -301,10 +323,23 @@ public class DonorGUI extends JFrame {
     if (result == JOptionPane.OK_OPTION) {
         // Process the entered data, e.g., delete the scholarship with the specified title
         String scholarshipToDelete = scholarshipToDeleteField.getText();
-
+        
+        for(int i = 0; i < 100; i++)
+            {
+                if(getName().equals(LoginSignupGUI.scholarships[i].getName()))
+                {
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setName("null");
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDescription("null");
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setEligibility("null");
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setRequirements("null");
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setAmount("null");
+                   LoginSignupGUI.scholarships[LoginSignupGUI.scholcounter].setDeadlines("null");
+                   break;
+                }
+            }
         // Perform actions with the entered data as needed
         // You may want to delete the scholarship or perform other operations
-        System.out.println("Deleted Scholarship Title: " + scholarshipToDelete);
+        //System.out.println("Deleted Scholarship Title: " + scholarshipToDelete);
     }
     }
         
@@ -325,7 +360,10 @@ public class DonorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle logout action
-                JOptionPane.showMessageDialog(DonorGUI.this, "Log out option clicked");
+                //JOptionPane.showMessageDialog(DonorGUI.this, "Log out option clicked");
+                LoginSignupGUI log1 = new LoginSignupGUI();
+                log1.openLoginSignupGUI();
+                donorFrame.dispose();
             }
         });
 
@@ -339,7 +377,7 @@ public class DonorGUI extends JFrame {
         JViewport viewport = scrollPane.getViewport();
         viewport.setViewPosition(new Point(0, 0));
     }
-
+    /*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -348,4 +386,6 @@ public class DonorGUI extends JFrame {
             }
         });
     }
+*/
 }
+

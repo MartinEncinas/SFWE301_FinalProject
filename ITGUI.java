@@ -5,18 +5,19 @@ import java.awt.event.ActionListener;
 
 public class ITGUI extends JFrame {
     private JScrollPane scrollPane;
-
+    static JFrame ITFrame = new JFrame();
+    String search;
     public ITGUI() {
         // frame properties
-        setTitle("UASAMS Dashboard");
-        setSize(800, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        ITFrame.setTitle("UASAMS Dashboard");
+        ITFrame.setSize(800, 600);
+        ITFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ITFrame.setLocationRelativeTo(null);
 
         // panel for the navigation bar
         JPanel navBar = new JPanel(new BorderLayout());
         navBar.setBackground(Color.BLACK);
-        navBar.setPreferredSize(new Dimension(getWidth(), 40)); // Adjust the height as needed
+        navBar.setPreferredSize(new Dimension(ITFrame.getWidth(), 40)); // Adjust the height as needed
 
         //UASAMS logo on the left
         ImageIcon logoIcon = new ImageIcon("logo.png");
@@ -67,14 +68,14 @@ public class ITGUI extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // add the navigation bar to the NORTH position
-        add(navBar, BorderLayout.NORTH);
+        ITFrame.add(navBar, BorderLayout.NORTH);
         // add the scroll pane to the CENTER position
-        add(scrollPane, BorderLayout.CENTER);
+        ITFrame.add(scrollPane, BorderLayout.CENTER);
 
         addScholarshipITPanel();
     }
 
-    private void addScholarshipITPanel() {
+    public void addScholarshipITPanel() {
         JButton AccountAddButton = new JButton("Create Account");
         JButton AccountModifyButton = new JButton("Modify Account");
         JButton AccountDeactivateButton = new JButton("Deactivate Account");
@@ -118,8 +119,9 @@ public class ITGUI extends JFrame {
         gbc.gridy++;
         scholarshipPanel.add(AccountDeactivateButton, gbc);
        
-        add(scholarshipPanel, BorderLayout.CENTER);
-
+        ITFrame.add(scholarshipPanel, BorderLayout.CENTER);
+        ITFrame.getContentPane().add(scholarshipPanel);
+        ITFrame.setVisible(true);
     }
     
     private void showAccountAdd(){
@@ -154,7 +156,8 @@ public class ITGUI extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 1;
-        registrationPanel.add(new JTextField(20), gbc);
+        JTextField name = new JTextField(20);
+        registrationPanel.add(name, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -162,7 +165,8 @@ public class ITGUI extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 2;
-        registrationPanel.add(new JTextField(20), gbc);
+        JTextField email = new JTextField(20);
+        registrationPanel.add(email, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -170,7 +174,8 @@ public class ITGUI extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 3;
-        registrationPanel.add(new JTextField(20), gbc);
+        JTextField pass = new JTextField(20);
+        registrationPanel.add(pass, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 4;
@@ -178,7 +183,8 @@ public class ITGUI extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 4;
-        registrationPanel.add(new JTextField(20), gbc);
+        JTextField phone = new JTextField(20);
+        registrationPanel.add(phone, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 5;
@@ -186,7 +192,8 @@ public class ITGUI extends JFrame {
     
         gbc.gridx = 1;
         gbc.gridy = 5;
-        registrationPanel.add(new JCheckBox("Yes"), gbc);
+        JCheckBox adminCheck = new JCheckBox("Yes");
+        registrationPanel.add(adminCheck, gbc);
     
         gbc.gridx = 0;
         gbc.gridy = 6;
@@ -352,6 +359,7 @@ public class ITGUI extends JFrame {
     private JButton createDeactivateButton(JFrame deactivateFrame) {
         JButton deactivateButton = new JButton("Deactivate");
         deactivateButton.addActionListener(e -> handleDeactivation(deactivateFrame));
+        
         return deactivateButton;
     }
 
@@ -359,7 +367,8 @@ public class ITGUI extends JFrame {
         /* add logic for deactivation when the button is clicked
         // we can perform the necessary actions like deactivating the account
         // we may want to ask for confirmation before deactivating*/
-        System.out.println("Deactivation logic here"); 
+        //System.out.println("Deactivation logic here"); 
+        
         deactivateFrame.dispose(); // close the deactivate frame/GUI after deactivation
     }
 /* 
@@ -395,7 +404,10 @@ public class ITGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle logout action
-                JOptionPane.showMessageDialog(ITGUI.this, "Log out option clicked");
+                //JOptionPane.showMessageDialog(ITGUI.this, "Log out option clicked");
+                LoginSignupGUI log1 = new LoginSignupGUI();
+                log1.openLoginSignupGUI();
+                ITFrame.dispose();
             }
         });
 
@@ -409,6 +421,7 @@ public class ITGUI extends JFrame {
         JViewport viewport = scrollPane.getViewport();
         viewport.setViewPosition(new Point(0, 0));
     }
+    /*
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -417,4 +430,5 @@ public class ITGUI extends JFrame {
             }
         });
     }
+    */
 }
